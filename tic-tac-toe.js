@@ -1,5 +1,5 @@
 const gameboard = (function () {
-  let board = new Array(9);
+  const board = new Array(9);
 
   /**
    * Place a symbol in grid square on gameboard
@@ -76,8 +76,13 @@ const gameboard = (function () {
     }
   }
 
+  /**
+   * Clears gameboard
+   */
   function clear() {
-    board = new Array(9);
+    for (let i = 0; i < 9; i++) {
+      board[i] = undefined;
+    }
   }
   
   return {place, checkWinner, clear};
