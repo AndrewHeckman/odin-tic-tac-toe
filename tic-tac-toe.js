@@ -51,64 +51,73 @@ const gameController = (function () {
   /**
      * Check for a winner
      * @param {Number} square Square last placed
-     * @return {Array<Number>} Array of winning squares, empty if no winner
+     * @return {Array<{winner: String, squares: Array<Number>}>} Symbol of winner and array of winning squares, both empty if no winner
      */
   function checkWinner(square) {
     const symbol = gameboard.getSquare(square);
 
     switch (square) {
       case 0: {
-        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(2) === symbol) return [0, 1, 2];
-        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(6) === symbol) return [0, 3, 6];
-        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(8) === symbol) return [0, 4, 8];
-        return [];
+        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(2) === symbol) return [symbol, [0, 1, 2]];
+        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(6) === symbol) return [symbol, [0, 3, 6]];
+        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [0, 4, 8]];
+        break;
       }
       case 1: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(2) === symbol) return [0, 1, 2];
-        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(7) === symbol) return [1, 4, 7];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(2) === symbol) return [symbol, [0, 1, 2]];
+        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(7) === symbol) return [symbol, [1, 4, 7]];
+        break;
       }
       case 2: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(1) === symbol) return [0, 1, 2];
-        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(6) === symbol) return [2, 4, 6];
-        if (gameboard.getSquare(5) === symbol && gameboard.getSquare(8) === symbol) return [2, 5, 8];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(1) === symbol) return [symbol, [0, 1, 2]];
+        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(6) === symbol) return [symbol, [2, 4, 6]];
+        if (gameboard.getSquare(5) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [2, 5, 8]];
+        break;
       }
       case 3: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(6) === symbol) return [0, 3, 6];
-        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(5) === symbol) return [3, 4, 5];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(6) === symbol) return [symbol, [0, 3, 6]];
+        if (gameboard.getSquare(4) === symbol && gameboard.getSquare(5) === symbol) return [symbol, [3, 4, 5]];
+        break;
       }
       case 4: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(8) === symbol) return [0, 4, 8];
-        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(7) === symbol) return [1, 4, 7];
-        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(6) === symbol) return [2, 4, 6];
-        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(5) === symbol) return [3, 4, 5];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [0, 4, 8]];
+        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(7) === symbol) return [symbol, [1, 4, 7]];
+        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(6) === symbol) return [symbol, [2, 4, 6]];
+        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(5) === symbol) return [symbol, [3, 4, 5]];
+        break;
       }
       case 5: {
-        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(8) === symbol) return [2, 5, 8];
-        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(4) === symbol) return [3, 4, 5];
-        return [];
+        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [2, 5, 8]];
+        if (gameboard.getSquare(3) === symbol && gameboard.getSquare(4) === symbol) return [symbol, [3, 4, 5]];
+        break;
       }
       case 6: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(3) === symbol) return [0, 3, 6];
-        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(4) === symbol) return [2, 4, 6];
-        if (gameboard.getSquare(7) === symbol && gameboard.getSquare(8) === symbol) return [6, 7, 8];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(3) === symbol) return [symbol, [0, 3, 6]];
+        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(4) === symbol) return [symbol, [2, 4, 6]];
+        if (gameboard.getSquare(7) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [6, 7, 8]];
+        break;
       }
       case 7: {
-        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(4) === symbol) return [1, 4, 7];
-        if (gameboard.getSquare(6) === symbol && gameboard.getSquare(8) === symbol) return [6, 7, 8];
-        return [];
+        if (gameboard.getSquare(1) === symbol && gameboard.getSquare(4) === symbol) return [symbol, [1, 4, 7]];
+        if (gameboard.getSquare(6) === symbol && gameboard.getSquare(8) === symbol) return [symbol, [6, 7, 8]];
+        break;
       }
       case 8: {
-        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(4) === symbol) return [0, 4, 8];
-        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(5) === symbol) return [2, 5, 8];
-        if (gameboard.getSquare(6) === symbol && gameboard.getSquare(7) === symbol) return [6, 7, 8];
-        return [];
+        if (gameboard.getSquare(0) === symbol && gameboard.getSquare(4) === symbol) return [symbol, [0, 4, 8]];
+        if (gameboard.getSquare(2) === symbol && gameboard.getSquare(5) === symbol) return [symbol, [2, 5, 8]];
+        if (gameboard.getSquare(6) === symbol && gameboard.getSquare(7) === symbol) return [symbol, [6, 7, 8]];
+        break;
       }
     }
+
+    // check for tie. if an empty cell is found, there is no winner and the game continues.
+    // if there are no empty cells, it's the cat's game
+    for (let i = 0; i < 9; i++) {
+      if (gameboard.getSquare(i) != undefined) continue;
+      return ["", []];
+    }
+    
+    return ["C", []];
   }
 
   return {checkWinner}
