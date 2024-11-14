@@ -123,6 +123,19 @@ const gameController = (function () {
   return {checkWinner}
 })();
 
-function playerFactory() {
+/**
+ * Factory for player objects
+ * @param {String} name Player's name
+ * @param {String} symbol Player's symbol
+ */
+function playerFactory (name, symbol) {
+  function getName() {
+    return name;
+  }
 
+  function getSymbol() {
+    return symbol;
+  }
+
+  return {getName, getSymbol};
 }
