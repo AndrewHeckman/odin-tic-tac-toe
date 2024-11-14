@@ -1,3 +1,6 @@
+/**
+ * Controls the virtual board on which the game is played
+ */
 const gameboard = (function () {
   const board = new Array(9);
 
@@ -88,6 +91,9 @@ const gameboard = (function () {
   return {place, checkWinner, clear};
 })();
 
+/**
+ * Controls the display of the game on the screen
+ */
 const displayController = (function () {
 
 })();
