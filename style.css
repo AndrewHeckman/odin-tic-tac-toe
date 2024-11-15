@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  font-family: "Roboto";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gameboard-width: calc(100vw / 3);
+  --background: #f3f3e0;
+  --background-1: #f5cfd2;
+  --border-1: #ED2939;
+  --background-2: #cbe0f7;
+  --border-2: #002654;
+}
+
+.flex {
+  display: flex;
+}
+
+body {
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: var(--background);
+  height: 100vh;
+}
+
+.grid {
+  display: grid;
+}
+
+header{
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  grid-template-rows: 1fr;
+}
+
+h1{
+  font-size: 4rem;
+  text-align: center;
+}
+
+header span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header span *{
+  font-size: 1.5rem;
+  height: 3ch;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+input {
+  width: 12ch;
+  border-right: 0;
+  border-left: 2px solid;
+}
+
+.player-1{
+  background-color: var(--background-1);
+  border-color: var(--border-1);
+  color: var(--border-1);
+}
+
+.player-2{
+  background-color: var(--background-2);
+  border-color: var(--border-2);
+  color: var(--border-2);
+}
+
+.score{
+  aspect-ratio: 1 / 1;
+  border-right: 2px solid;
+  border-left: 0;
+}
+
+button{
+  font-size: 1.5rem;
+  height: 2.25rem;
+  width: 12ch;
+  margin: auto;
+}
+
+#gameboard {
+  margin: auto;
+  width: max(16rem, var(--gameboard-width));
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  background-color: gray;
+}
+
+.square{
+  aspect-ratio: 1 / 1;
+  border: 0.5rem solid var(--background);
+  background-color: var(--background);
+}
+
+p{
+  text-align: center;
+}

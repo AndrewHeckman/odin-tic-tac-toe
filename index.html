@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="style.css">
     <script src="tic-tac-toe.js" defer></script>
   </head>
-  <body>
-    
+  <body class="flex">
+    <header class="grid">
+      <h1>Tic-Tac-Toe</h1>
+      <span>
+        <input id="name-1" class="player-1" type="text" placeholder="Player 1">
+        <span id="score-1" class="score player-1">0</span>
+      </span>
+      <span>
+        <input id="name-2" class="player-2" type="text" placeholder="Player 2">
+        <span id="score-2" class="score player-2">0</span>
+      </span>
+      <button>New Game</button>
+    </header>
+    <main>
+      <div class="grid" id="gameboard">
+        <div class="square" data-index="0"></div>
+        <div class="square" data-index="1"></div>
+        <div class="square" data-index="2"></div>
+        <div class="square" data-index="3"></div>
+        <div class="square" data-index="4"></div>
+        <div class="square" data-index="5"></div>
+        <div class="square" data-index="6"></div>
+        <div class="square" data-index="7"></div>
+        <div class="square" data-index="8"></div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; Andrew Heckman 2024</p>
+    </footer>
   </body>
 </html>
