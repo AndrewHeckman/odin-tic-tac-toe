@@ -84,7 +84,7 @@ const displayController = (function () {
     const players = gameController.getPlayers();
     
     if (event.target.id === "name-1") players[0].setName(event.target.value);
-    else players[1].setName(event.target.id);
+    else players[1].setName(event.target.value);
   }
 
   function newGame() {}
