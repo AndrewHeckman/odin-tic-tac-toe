@@ -34,7 +34,7 @@ body {
 
 header{
   grid-template-columns: 2fr 1fr 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 h1{
@@ -46,6 +46,9 @@ header span{
   display: flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
 }
 
 header span *{
@@ -59,11 +62,15 @@ input {
   width: 12ch;
   border-right: 0;
   border-left: 2px solid;
+  padding: 0 1ch;
 }
 
-#winner {
-  text-align: center;
-  grid-column: 1 / 5;
+input:focus{
+  outline: none;
+}
+
+.focused {
+  outline: auto;
 }
 
 div {
@@ -109,6 +116,7 @@ button{
   font-size: var(--square-font-size);
   line-height: var(--square-font-size);
   text-align: center;
+  caret-color: transparent;
 }
 
 p{

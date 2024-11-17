@@ -57,7 +57,7 @@ const displayController = (function () {
   const score1 = document.querySelector("#score-1");
   const score2 = document.querySelector("#score-2");
   const newGameButton = document.querySelector("#new-game");
-  const winnerText = document.querySelector("#winner");
+  const winnerText = document.querySelector("#title");
 
   // reset name fields
   window.onload = function () {
@@ -69,6 +69,10 @@ const displayController = (function () {
   grid.addEventListener("click", gridClick);
   name1.addEventListener("keypress", nameEnter);
   name2.addEventListener("keypress", nameEnter);
+  name1.addEventListener("focus", nameFocus);
+  name2.addEventListener("focus", nameFocus);
+  name1.addEventListener("blur", nameBlur);
+  name2.addEventListener("blur", nameBlur);
   newGameButton.addEventListener("click", newGame);
 
   /**
@@ -126,6 +130,18 @@ const displayController = (function () {
   }
 
   /**
+   * Add outline to parent when input is focused
+   * @param {Event} event 
+   */
+  function nameFocus(event) {
+    event.target.parentElement.className += " focused";
+  }
+
+  function nameBlur(event) {
+    event.target.parentElement.className = event.target.parentElement.className.slice(0, -8);
+  }
+
+  /**
    * Reset game board
    */
   function newGame() {
@@ -135,7 +151,7 @@ const displayController = (function () {
       square.textContent = "";
     });
 
-    winnerText.textContent = "";
+    winnerText.textContent = "Tic-Tac-Toe";
 
     gameController.resetGame();
   }
