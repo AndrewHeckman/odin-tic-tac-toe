@@ -57,6 +57,7 @@ const displayController = (function () {
   const score1 = document.querySelector("#score-1");
   const score2 = document.querySelector("#score-2");
   const newGameButton = document.querySelector("#new-game");
+  const winnerText = document.querySelector("#winner");
 
   // reset name fields
   window.onload = function () {
@@ -70,9 +71,43 @@ const displayController = (function () {
   name2.addEventListener("keypress", nameEnter);
   newGameButton.addEventListener("click", newGame);
 
-  // event listener functions
+  /**
+   * Execute game logic
+   * @param {Event} event 
+   */
+  function gridClick(event) {
+    // bail if square was occupied
+    if (event.target.textContent) return;
 
-  function gridClick(event) {}
+    const player = gameController.getCurrentPlayer();
+    const square = event.target;
+    const squareNumber = parseInt(square.getAttribute("data-index"));
+
+    // change square style and add symbol
+
+    if (player.getSymbol() === "X") square.className += " player-1";
+    else square.className += " player-2";
+
+    square.textContent = player.getSymbol();
+
+    // if player won, update grid and score and display winning message
+
+    let [winner, winningSquares] = gameController.playTurn(squareNumber);
+
+    if (winner === "C") {
+      winnerText.textContent = "Cat's game!";
+    }
+    else if (winner === "X") {
+      player.addScore();
+      score1.textContent = player.getScore();
+      winnerText.textContent = `${player.getName()} wins!`;
+    }
+    else if (winner === "O") {
+      player.addScore();
+      score2.textContent = player.getScore();
+      winnerText.textContent = `${player.getName()} wins!`;
+    }
+  }
 
   /**
    * If the enter key was pressed, update the player name
@@ -87,7 +122,20 @@ const displayController = (function () {
     else players[1].setName(event.target.value);
   }
 
-  function newGame() {}
+  /**
+   * Reset game board
+   */
+  function newGame() {
+
+    squares.forEach(square => {
+      square.className = "square";
+      square.textContent = "";
+    });
+
+    winnerText.textContent = "";
+
+    gameController.resetGame();
+  }
 
 })();
 
@@ -118,8 +166,7 @@ const gameController = (function () {
 
   /**
    * Plays one turn of game
-   * @param {Player} player Player taking turn
-   * @param {Number} Square that was played
+   * @param {Number} square Square that was played
    * @returns {Array<{winner: String, squares: Array<Number>}>} Symbol of winner and array of winning squares, both empty if no winner
   */
   function playTurn(square) {
