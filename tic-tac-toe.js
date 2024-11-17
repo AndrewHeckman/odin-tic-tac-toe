@@ -94,7 +94,8 @@ const displayController = (function () {
 
     let [winner, winningSquares] = gameController.playTurn(squareNumber);
 
-    if (winner === "C") {
+    if (!winner) return;
+    else if (winner === "C") {
       winnerText.textContent = "Cat's game!";
     }
     else if (winner === "X") {
@@ -107,6 +108,8 @@ const displayController = (function () {
       score2.textContent = player.getScore();
       winnerText.textContent = `${player.getName()} wins!`;
     }
+
+    grid.removeEventListener("click", gridClick)
   }
 
   /**
@@ -126,7 +129,7 @@ const displayController = (function () {
    * Reset game board
    */
   function newGame() {
-
+    grid.addEventListener("click", gridClick);
     squares.forEach(square => {
       square.className = "square";
       square.textContent = "";
