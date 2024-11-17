@@ -49,6 +49,45 @@ const gameboard = (function () {
  * Controls the display of the game on the screen
  */
 const displayController = (function () {
+  // interactable elements
+  const squares = Array.from(document.querySelectorAll(".square"));
+  const grid = document.querySelector("#gameboard");
+  const name1 = document.querySelector("#name-1");
+  const name2 = document.querySelector("#name-2");
+  const score1 = document.querySelector("#score-1");
+  const score2 = document.querySelector("#score-2");
+  const newGameButton = document.querySelector("#new-game");
+
+  // reset name fields
+  window.onload = function () {
+    name1.value = "";
+    name2.value = "";
+  }
+
+  // set event listeners
+  grid.addEventListener("click", gridClick);
+  name1.addEventListener("keypress", nameEnter);
+  name2.addEventListener("keypress", nameEnter);
+  newGameButton.addEventListener("click", newGame);
+
+  // event listener functions
+
+  function gridClick(event) {}
+
+  /**
+   * If the enter key was pressed, update the player name
+   * @param {Event} event 
+   */
+  function nameEnter(event) {
+    if (event.key != "Enter") return;
+
+    const players = gameController.getPlayers();
+    
+    if (event.target.id === "name-1") players[0].setName(event.target.value);
+    else players[1].setName(event.target.id);
+  }
+
+  function newGame() {}
 
 })();
 
@@ -56,9 +95,26 @@ const displayController = (function () {
  * Controls the logic of how the game is played
  */
 const gameController = (function () {
-  const player1 = Player("player1", "X");
-  const player2 = Player("player2", "O");
+  const player1 = Player("Player 1", "X", 0);
+  const player2 = Player("Player 2", "O", 0);
   let playerTurn = 1;
+
+  /**
+   * Get players
+   * @returns {Array<Player>} Array containing both players
+   */
+  function getPlayers() {
+    return [player1, player2];
+  }
+
+  /**
+   * Get player whose turn it is
+   * @returns {Player} Player whose turn it is
+   */
+  function getCurrentPlayer() {
+    if (playerTurn === 1) return player1;
+    else return player2;
+  }
 
   /**
    * Plays one turn of game
@@ -192,15 +248,16 @@ const gameController = (function () {
     gameboard.clear();
   }
 
-  return { playGameConsole, playTurn }
+  return { getPlayers, getCurrentPlayer, playGameConsole, playTurn, resetGame }
 })();
 
 /**
- * Factory for player objects
+ * Game player
  * @param {String} name Player's name
  * @param {String} symbol Player's symbol
+ * @param {Number} score Player's score
  */
-function Player(name, symbol) {
+function Player(name, symbol, score) {
   function getName() {
     return name;
   }
@@ -209,5 +266,24 @@ function Player(name, symbol) {
     return symbol;
   }
 
-  return { getName, getSymbol };
+  function getScore() {
+    return score;
+  }
+
+  /**
+   * Set name
+   * @param {String} newName Name to be set
+   */
+  function setName(newName) {
+    name = newName;
+  }
+
+  /**
+   * Add 1 to player score
+   */
+  function addScore() {
+    score++;
+  }
+
+  return { getName, getSymbol, getScore, setName, addScore };
 }
