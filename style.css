@@ -8,7 +8,7 @@
 }
 
 :root {
-  --gameboard-width: calc(100vw / 3);
+  --gameboard-width: 40vw;
   --square-font-size: max(5rem, calc(calc(var(--gameboard-width) - 1rem) / 3));
   --background: #f3f3e0;
   --background-1: #f5cfd2;
@@ -34,7 +34,7 @@ body {
 
 header{
   grid-template-columns: 2fr 1fr 1fr 2fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 h1{
@@ -59,6 +59,11 @@ input {
   width: 12ch;
   border-right: 0;
   border-left: 2px solid;
+}
+
+#winner {
+  text-align: center;
+  grid-column: 1 / 5;
 }
 
 div {
