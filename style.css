@@ -9,6 +9,7 @@
 
 :root {
   --gameboard-width: calc(100vw / 3);
+  --square-font-size: max(5rem, calc(calc(var(--gameboard-width) - 1rem) / 3));
   --background: #f3f3e0;
   --background-1: #f5cfd2;
   --border-1: #ED2939;
@@ -60,6 +61,10 @@ input {
   border-left: 2px solid;
 }
 
+div {
+  background-color: var(--background);
+}
+
 .player-1{
   background-color: var(--background-1);
   border-color: var(--border-1);
@@ -96,8 +101,9 @@ button{
 
 .square{
   aspect-ratio: 1 / 1;
-  border: 0.5rem solid var(--background);
-  background-color: var(--background);
+  font-size: var(--square-font-size);
+  line-height: var(--square-font-size);
+  text-align: center;
 }
 
 p{
